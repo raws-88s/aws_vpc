@@ -8,7 +8,8 @@ locals {
     local.common_tags,
     {
         Name = "${var.project}-${var.environment}"
-    }
-  ),
-  var.vpc_tags
+    },
+    var.vpc_tags
+  )
+  
 }
