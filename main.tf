@@ -13,13 +13,20 @@ resource "aws_internet_gateway" "main" {
   tags = local.igw_final_tags
 }
 
-# #public subnet
-# resource "aws_subnet" "public" {
-#   count = length(var.public_subnet_cidrs)
-#   vpc_id     = aws_vpc.main.id
-#   cidr_block = var.public_subnet_cidrs[count.index]
-
-#   tags = {
-#     Name = "Main"
-#   }
-# }
+#public subnet
+resource "aws_subnet" "public" {
+  count = length(var.public_subnet_cidrs)
+  vpc_id     = aws_vpc.main.id
+  cidr_block = var.public_subnet_cidrs[count.index]
+  availability_zones = local.az_zones[count.index]
+  map_public_ip_on_launch = true
+  
+  #roboshop-dev-public-us-east-1a
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "${var.project}-${var.environment}-public-${locl.az_zones[count.index]}"
+    },
+    var.public_subnet_tags
+  )
+}
