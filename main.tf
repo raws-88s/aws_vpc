@@ -33,8 +33,9 @@ resource "aws_subnet" "public" {
 
 #private subnet
 resource "aws_subnet" "private" {
+  count = length(var.private_subnet_cidrs)
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.private_subnet_cidrs
+  cidr_block = var.private_subnet_cidrs[count.index]
   availability_zone = local.az_zones[count.index]
   
   #roboshop-dev-private-us-east-1a
