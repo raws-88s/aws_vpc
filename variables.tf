@@ -49,3 +49,16 @@ variable "private_subnet_tags" {
   default     = {}
  
 }
+
+variable "database_subnet_tags" {
+  type        = list
+  default     = ["10.0.22.0/24","10.0.23.0/24"]
+ 
+}
+
+
+variable "database_subnet_tags" {
+  type        = map
+  default     = {}
+  
+}
