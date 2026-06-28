@@ -7,8 +7,19 @@ resource "aws_vpc" "main" {
   tags = local.vpc_final_tags
 }
 
-resource "aws_internet_gateway" "gw" {
+resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id # vpc association
 
   tags = local.igw_final_tags
 }
+
+# #public subnet
+# resource "aws_subnet" "public" {
+#   count = length(var.public_subnet_cidrs)
+#   vpc_id     = aws_vpc.main.id
+#   cidr_block = var.public_subnet_cidrs[count.index]
+
+#   tags = {
+#     Name = "Main"
+#   }
+# }
