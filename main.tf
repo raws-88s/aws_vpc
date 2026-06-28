@@ -6,3 +6,9 @@ resource "aws_vpc" "main" {
 #roboshop-dev
   tags = local.vpc_final_tags
 }
+
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id # vpc association
+
+  tags = local.igw_final_tags
+}
