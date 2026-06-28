@@ -50,7 +50,7 @@ variable "private_subnet_tags" {
  
 }
 
-variable "database_subnet_tags" {
+variable "database_cidrs" {
   type        = list
   default     = ["10.0.22.0/24","10.0.23.0/24"]
  
