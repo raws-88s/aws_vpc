@@ -30,3 +30,19 @@ resource "aws_subnet" "public" {
     var.public_subnet_tags
   )
 }
+
+#private subnet
+resource "aws_subnet" "private" {
+  vpc_id     = aws_vpc.main.id
+  cidr_block = var.private_subnet_cidrs
+  availability_zone = local.az_zones[count.index]
+  
+  #roboshop-dev-private-us-east-1a
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "${var.project}-${var.environment}-private-"${local.az_zones[count.index]}
+    },
+    var.private_subnet_tags
+  )
+}
