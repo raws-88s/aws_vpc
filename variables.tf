@@ -50,7 +50,7 @@ variable "private_subnet_tags" {
  
 }
 
-variable "database_sunbet_cidrs" {
+variable "database_subnet_cidrs" {
   type        = list
   default     = ["10.0.22.0/24","10.0.23.0/24"]
  
