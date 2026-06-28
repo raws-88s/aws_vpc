@@ -21,7 +21,7 @@ variable "vpc_tags" {
 }
 
 variable "igw_tags" {
-  type        = list
+  type        = map
   default     = {}
 
 }
